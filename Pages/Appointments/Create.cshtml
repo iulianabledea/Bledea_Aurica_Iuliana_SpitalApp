@@ -1,0 +1,61 @@
+﻿@page
+@model CreateModel
+@using Bledea_Aurica_Iuliana_SpitalApp.Pages.Appointments
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Programare noua</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Appointment.AppointmentDate" class="control-label">Data Programarii</label>
+                <input asp-for="Appointment.AppointmentDate" class="form-control" />
+                <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Appointment.ServiceType" class="control-label">Serviciu Medical</label>
+                <select asp-for="Appointment.ServiceType" class="form-control" asp-items="@(ViewData["Services"] as SelectList)">
+                    <option value="">-- Selecteaza Serviciul --</option>
+                </select>
+                <span asp-validation-for="Appointment.ServiceType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Appointment.Description" class="control-label">Descriere</label>
+                <textarea asp-for="Appointment.Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Appointment.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Appointment.PatientID" class="control-label">Pacient</label>
+                <select asp-for="Appointment.PatientID" class="form-control" asp-items="@(ViewData["PatientID"] as SelectList)">
+                    <option value="">-- Selecteaza Pacientul --</option>
+                </select>
+                <span asp-validation-for="Appointment.PatientID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Appointment.DoctorID" class="control-label">Doctor</label>
+                <select asp-for="Appointment.DoctorID" class="form-control" asp-items="@(ViewData["DoctorID"] as SelectList)">
+                    <option value="">-- Selecteaza Doctorul --</option>
+                </select>
+                <span asp-validation-for="Appointment.DoctorID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
